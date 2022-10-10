@@ -5,7 +5,7 @@ body{
     grid-template-areas: 
     "header header"
     "nav nav"
-    "main1 main2"
+    "main1 aside"
     "footer footer";
 }
 
@@ -42,11 +42,8 @@ main{
     background-color: cadetblue;
 }
 
-section{
-    grid-area: main1;
-}
 
-section:last-of-type{
+aside{
     grid-area: main2;
 }
 
