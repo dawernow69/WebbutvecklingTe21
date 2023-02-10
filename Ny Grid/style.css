@@ -1,0 +1,199 @@
+body{
+    background-color: antiquewhite;
+}
+
+/* Gridlayout med en kolumn och 4 rader. För mobiler och liknande */
+.wrapper{    
+    background-color: aliceblue;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px auto auto 30px;
+    grid-template-areas: 
+    "header"
+    "nav"
+    "main"
+    "footer";
+    text-align: justify;
+}
+
+/* Layout för fågelsidan med en extra rad för den lokala menyn totalt 5 rader */
+#ny .wrapper, #fagel .wrapper{
+    grid-template-rows: 50px auto auto auto 30px;
+    grid-template-areas: 
+    "header"
+    "nav"
+    "lokalMeny"
+    "main"
+    "footer";
+}
+
+header{
+    grid-area: header;
+}
+
+header>h1{
+    margin:0;
+    text-align: center;
+    font-size: 2.2em;
+}
+
+nav{
+    grid-area: nav;
+}
+
+/*Skapar gridlayout för den globala menyn. Antalet rader beror av antalet li element*/
+nav > ul{
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-rows: auto;
+    height: 100%;
+}
+
+nav li{
+    height: 100%;
+    list-style-type: none;
+    text-align: center;
+    border:1px solid black;
+    border-radius: 10px;
+    font-size: 1.5em;
+}
+
+nav a{
+    line-height: 2;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+
+#ny .lokalMeny, #fagel .lokalMeny{
+    grid-area: lokalMeny;
+}
+
+/*Gridlayout för main*/
+main{
+    grid-area: main;
+    display: grid;
+    grid-template-rows:auto;
+    gap: 10px;
+}
+
+main >section{
+    border: 1px dashed darkmagenta;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: grid;
+    grid-template-rows: auto;
+}
+
+main img{
+    /*display: none;*/
+    width: 20%;
+    margin:auto;
+    grid-row: 1;
+}
+
+footer{
+    border: 1px dotted darkcyan;
+    font-size: x-small;
+    grid-area: footer;
+    text-align: center;
+}
+
+@media screen and (min-width: 800px) {
+    body{
+        height:95vh;
+    }
+    .wrapper{
+        width:90%;
+        height: 95%;
+        margin: 0 auto;
+        grid-template-rows: 50px 50px auto 30px;
+    }
+
+    nav > ul{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+    }
+
+    main{
+        grid-area: main;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 10px;
+        overflow: auto;
+    }
+
+    main>section:nth-child(4n+2){
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+    
+    main>section:nth-child(4n){
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+    
+    main img{
+        width: 75%;
+        grid-row: auto;
+    }
+
+    #info main{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    #info main section, #ny main section, #fagel main section{
+        display: block;
+    }
+
+    #ny .wrapper, #fagel .wrapper{
+        grid-template-columns: 1fr 4fr;
+        grid-template-rows: 50px 50px auto 30px;
+        grid-template-areas: 
+        "header header"
+        "nav nav"
+        "lokalMeny main"
+        "footer footer";
+    }
+
+    #ny .lokalMeny ul, #fagel .lokalMeny ul{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        height: 50%;
+    }
+
+    #ny main{
+        grid-template-columns: 1fr 2fr;
+    }
+
+    #fagel main{
+        grid-template-columns: 1fr;
+    }
+
+    #fagel figure{
+        width: 30%;
+        margin:0;
+        float: left;
+    }
+
+    #fagel figure img{
+        width: 80%;
+        margin: 20px;
+    }
+
+    #fagel figcaption{
+        text-align: center;
+    }
+    
+    #fagel figure ~ p{
+        float:right;
+        width: 60%;
+        padding-right: 10px;
+    }
+
+   
+}
